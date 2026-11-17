@@ -254,7 +254,7 @@ function sendComment(index) {
     render();
 }
 
-function liked(index) {
+function toggleLiked(index) {
     let likeNumber = books[index].likes;
     document.getElementById(`heart-btn-${index}`).classList.toggle('liked');
 

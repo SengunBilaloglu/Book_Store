@@ -10,7 +10,7 @@ function getBooksTemplate(index) {
                     <h5 class="book-price" id="book-price-${index}">${books[index].price}</h5>
                     <div class="likes">
                         <h6 id="number-of-likes-${index}">${books[index].likes}</h6>
-                        <button id="heart-btn-${index}" class="heart-btn" aria-label="Like" onclick="liked(${index})">
+                        <button id="heart-btn-${index}" class="heart-btn" aria-label="Like" onclick="toggleLiked(${index})">
                             <span class="heart">&#9829;</span>
                         </button>
                     </div>
