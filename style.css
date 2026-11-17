@@ -1,0 +1,144 @@
+.container-fluid{
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+ 
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.card {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  /* justify-content: center; */
+  /* align-items: center; */
+}
+
+.card-body {
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.card-text {
+  font-size: 14px;
+}
+
+.img-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-body>img {
+  width: 5rem;
+}
+
+.price-and-likes {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.likes {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.heart-btn {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 24px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+  margin-bottom: 8px;
+}
+
+.heart-btn:hover {
+  transform: scale(1.08);
+}
+
+.heart {
+  color: #ccc;
+  transition: color 0.2s ease;
+}
+
+.heart-btn.liked {
+  border-color: #e63946;
+}
+
+.heart-btn.liked .heart {
+  color: #e63946;
+}
+
+.heart-btn.notLiked {
+  border-color: #ccc;
+}
+
+.heart-btn.notLiked .heart {
+  color: #ccc;
+}
+
+a > .heart{
+  color: #e63946;
+  font-size: 24px;
+}
+
+hr {
+  margin: 0;
+}
+
+p {
+  margin-bottom: 3px;
+}
+
+.send-btn {
+  display: inline-flex;
+  align-items: center;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: var(--bs-info);
+}
+
+.send-btn:hover {
+  transform: scale(1.08);
+}
+
+.send-btn>img {
+  width: 25px;
+  transform: rotate(90deg);
+}
+
+@media (max-width: 900px) {
+  .container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Smartphone */
+@media (max-width: 550px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+}
