@@ -175,18 +175,14 @@ let books = [
 ]
 
 const arrayLength = books.length;
-// let favoriteBooks = [];
 
 function init() {
-
     getFromLocalStorage();
     render();
-
 }
 
 function saveToLocalStorage() {
     localStorage.setItem("books", JSON.stringify(books));
-    // localStorage.setItem("favoriteBooks", JSON.stringify(favoriteBooks));
 }
 
 function getFromLocalStorage() {
@@ -194,31 +190,56 @@ function getFromLocalStorage() {
     if (booksStorage != null) {
         books = booksStorage;
     }
-
-    // let favoritesStorage = JSON.parse(localStorage.getItem("favoriteBooks"));
-    // if (favoritesStorage != null) {
-    //     favoriteBooks = favoritesStorage;
-    // }
 }
 
 function render() {
-
     let contentRef = document.getElementById("container");
     contentRef.innerHTML = "";
 
     for (let index = 0; index < books.length; index++) {
-
         contentRef.innerHTML += getBooksTemplate(index);
-
         renderBookInfo(index);
         renderComments(index);
         renderLikeButton(index);
     }
-
     showFavoritesNumber();
-
 }
 
+function renderBookInfo(index) {
+    let headerRef = document.getElementById(`card-header-${index}`);
+    headerRef.innerHTML = books[index].name;
+
+    let priceRef = document.getElementById(`book-price-${index}`);
+    priceRef.innerHTML = books[index].price + "€";
+
+    let likesRef = document.getElementById(`number-of-likes-${index}`);
+    likesRef.innerHTML = books[index].likes;
+
+    let authorRef = document.getElementById("authors-name");
+    authorRef.innerHTML = books[index].author;
+
+    let publishedYearRef = document.getElementById("published-jahr");
+    publishedYearRef.innerHTML = books[index].publishedYear;
+
+    let genreRef = document.getElementById("genre");
+    genreRef.innerHTML = books[index].genre;
+}
+
+function renderComments(index) {
+    let commentsRef = document.getElementById(`comments-body-${index}`);
+    commentsRef.innerHTML = "<h6>Kommentare:</h6>";
+
+    for (let i = books[index].comments.length - 1; i >= 0; i--) {
+        const elementName = books[index].comments[i].name;
+        const elementComment = books[index].comments[i].comment;
+        commentsRef.innerHTML += `<p class="card-text"><b>${elementName}: </b>${elementComment}</p>`;
+    }
+}
+
+function renderLikeButton(index) {
+    let heartBtn = document.getElementById(`heart-btn-${index}`);
+    heartBtn.classList.toggle("liked", books[index].liked);
+}
 
 function sendComment(index) {
     let newCommentRef = document.getElementById(`new-comment-${index}`);
@@ -233,32 +254,21 @@ function sendComment(index) {
     render();
 }
 
-
-
 function liked(index) {
     let likeNumber = books[index].likes;
-
     document.getElementById(`heart-btn-${index}`).classList.toggle('liked');
 
     if (books[index].liked == false) {
         likeNumber++;
         books[index].liked = true;
-        // favoriteBooks.push(books[index].name);
-
     } else {
         likeNumber--;
         books[index].liked = false;
-        // let deletedIndex = favoriteBooks.indexOf(books[index].name);
-
-        // favoriteBooks.splice(deletedIndex, 1);
     }
-
     document.getElementById(`number-of-likes-${index}`).innerText = likeNumber;
     books[index].likes = likeNumber;
-
     saveToLocalStorage();
     render();
-
 }
 
 function initFavorites() {
@@ -269,7 +279,6 @@ function initFavorites() {
 
 function showFavoritesNumber() {
     let likesRef = document.getElementById("fav-number");
-
     let num = 0;
 
     for (let i = 0; i < books.length; i++) {
@@ -277,7 +286,6 @@ function showFavoritesNumber() {
             num++;
         }
     }
-
     likesRef.innerHTML = num;
 }
 
@@ -285,8 +293,7 @@ function showFavorites() {
     let listRef = document.getElementById("favorites-list");
     for (let i = 0; i < books.length; i++) {
         if (books[i].liked == true) {
-            listRef.innerHTML+=`<li class="list-group-item">${books[i].name}</li>`
+            listRef.innerHTML += `<li class="list-group-item">${books[i].name}</li>`
         }
     }
-
 }
